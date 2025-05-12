@@ -8,17 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Elephant extends Actor
 {
-    /**
-     * Act - do whatever the Elephant wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    GreenfootSound elephantSound = new GreenfootSound("elephantcub.mp3");
+    GreenfootImage idle = new Greenfoot("images");
+    
     public void act()
     {
         //mdd your action code here.
-        if( Greenfoot.isKeyDown("a")){
-            move(-1);
-        } else if (Greenfoot.isKeyDown("d")){
-            move(1);
+        if(Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")){
+            move(-2);
+        } else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")){
+            move(2);
         }
         
         eat();
@@ -30,8 +29,8 @@ public class Elephant extends Actor
             removeTouching(Apple.class);
             MyWorld world = (MyWorld) getWorld();
             world.createApple();
-            
             world.increaseScore();
+            elephantSound.play();
         }
     }
 }
